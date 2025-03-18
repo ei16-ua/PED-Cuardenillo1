@@ -25,7 +25,7 @@ TPoro::TPoro(int, int, double, char *)
     this->color = color;
 }
 
-TPoro::TPoro(TPoro &tporo)
+TPoro::TPoro(const TPoro &tporo ) 
 {
     this->x = tporo.x;
     this->y = tporo.y;

@@ -16,7 +16,7 @@ class TPoro{
         TPoro();
         TPoro(int , int, double);
         TPoro(int, int, double, char *);
-        TPoro(TPoro & const);
+        TPoro(const TPoro &);
         ~TPoro();
         TPoro & operator=(const TPoro & );
 
