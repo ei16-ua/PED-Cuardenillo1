@@ -24,4 +24,5 @@ class TVectorPoro{
         int Cantidad() const;
         bool Redimensionar(int);
 
+        friend ostream &operator<<(ostream &, const TVectorPoro &);
 };
