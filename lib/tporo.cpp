@@ -1,54 +1,76 @@
 #include "../include/tporo.h"
 #include "tporo.h"
 
+void TPoro::Copiar(const TPoro &p)
+{
+    x = p.x;
+    y = p.y;
+    volumen = p.volumen;
+    if (p.color != NULL) {
+        color = new char[strlen(p.color) + 1];
+        strcpy(color, p.color);
+    } else {
+        color = NULL;
+    }
+}
+
+void TPoro::ConvertirMinusculas(char *c)
+{
+    for (int i = 0; c[i] != '\0'; i++) {
+        c[i] = tolower(c[i]);
+    }
+}
+
 TPoro::TPoro()
 {
     this->x = 0;
     this->y = 0;
     this->volumen = 0;
-    this->color = NULL;
+    this->color = nullptr;
 
 }
 
-TPoro::TPoro(int, int, double)
+TPoro::TPoro(int px, int py, double v)
 {
-    this->x = x;
-    this->y = y;
-    this->volumen = volumen;
+    this->x = px;
+    this->y = py;
+    this->volumen = v;
 }
 
-TPoro::TPoro(int, int, double, char *)
+TPoro::TPoro(int px, int py, double v, const char* c)
 {
-    this->x = x;
-    this->y = y;
-    this->volumen = volumen;
+    this->x = px;
+    this->y = py;
+    this->volumen = v;
+    if (c != NULL)
+    {
+        color = new char[strlen(c) + 1];
+        strcpy(color, c);
+        ConvertirMinusculas(color);
+    }
+    else{
+        color = nullptr;
+    }
+    
     this->color = color;
 }
 
 TPoro::TPoro(const TPoro &tporo ) 
 {
-    this->x = tporo.x;
-    this->y = tporo.y;
-    this->volumen = tporo.volumen;
-    this->color = tporo.color;
+    Copiar(tporo);
 }
 
 TPoro::~TPoro()
 {
-    delete[] this->color;
-    
-    this->x = 0;
-    this->y = 0;
-    this->volumen = 0.0;
-    this->color = nullptr;
+    delete[] color;
 }
 
 TPoro &TPoro::operator=(const TPoro &tporo)
 {
-    this->x = tporo.x;
-    this->y = tporo.y;
-    this->volumen = tporo.volumen;
-    this->color = tporo.color;
+    if(this != &tporo){
+        delete[] color;
+        Copiar(tporo);
+    }
     return *this;
 }
 
@@ -59,7 +81,7 @@ bool TPoro::operator==(const TPoro &tporo ) const
 
 bool TPoro::operator!=(const TPoro &tporo) const
 {
-    return this->x != tporo.x || this->y != tporo.y || this->volumen != tporo.volumen || this->color != tporo.color;
+    return !(*this == tporo);
 }
 
 void TPoro::Posicion(int, int)
@@ -73,37 +95,43 @@ void TPoro::Volumen(double)
     this->volumen = volumen;
 }
 
-void TPoro::Color(char *)
+void TPoro::Color(const char *)
 {
-    this->color = color;
+    delete[] color;
+    if (color != NULL)
+    {
+        color = new char[strlen(color) + 1];
+        strcpy(this->color, color);
+        ConvertirMinusculas(this->color);
+    }
+    else{
+        color = NULL;
+    }
 }
 
 int TPoro::PosicionX() const
 {
-    return this->x;
+    return x;
 }
 
 int TPoro::PosicionY() const
 {
-    return this->y;
+    return y;
 }
 
 double TPoro::Volumen() const
 {
-    return this->volumen;
+    return volumen;
 }
 
 char *TPoro::Color() const
 {
-    return this->color;
+    return color;
 }
 
 bool TPoro::EsVacio() const
 {
-    if(this->x == NULL){
-        return true;
-    }
-    return false;
+    return x == 0 && y == 0 && volumen == 0 && color == nullptr;
 }
 
 ostream & operator<<(ostream &os, const TPoro &obj)

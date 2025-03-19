@@ -1,6 +1,7 @@
 #ifndef _TPoro_H_
 #define _TPoro_H_
 #include <iostream>
+#include <cctype>
 using namespace std;
 
 class TPoro{
@@ -10,7 +11,8 @@ class TPoro{
         double volumen;
         char* color;
     
-        
+        void Copiar(const TPoro &);
+        void COnvertirMinusculas(char *);
 
     public:
         TPoro();
@@ -24,7 +26,7 @@ class TPoro{
         bool operator!=(const TPoro & ) const;
         void Posicion(int, int);
         void Volumen(double);
-        void Color(char *);
+        void Color(const char *);
         int PosicionX() const;
         int PosicionY() const;
         double Volumen() const;

@@ -91,16 +91,31 @@ int TVectorPoro::Cantidad() const{
     return count;
 }
 
-bool TVectorPoro::Redimensionar(int nuevaDim){
-    if(nuevaDim <= 0 || nuevaDim == dimension){return false;}
+bool TVectorPoro::Redimensionar(int dim){
+    if(dim <= 0 || dim == dimension){return false;}
 
-    TPoro *nuevoDatos = new TPoro[nuevaDim];
-    int minDim = (nuevaDim < dimension) ? nuevaDim : dimension;
+    TPoro *newDatos = new TPoro[dim];
+    int minDim = (dim < dimension) ? dim : dimension;
     for (int i=0; i < minDim; i++){
-        nuevoDatos[i] = datos[i];
+        newDatos[i] = datos[i];
     }
     delete[] datos;
-    datos = nuevoDatos;
-    dimension = nuevaDim;
+    datos = newDatos;
+    dimension = dim;
     return true;
+}
+
+ostream &operator<<(ostream &, const TVectorPoro &tvector)
+{
+    os << "[";
+    for (int i = 0; i < tvector; i++)
+    {
+        os << i+1 << " " << tvector.datos[i];
+        if (i < tvector.dimension - 1)
+        {
+            os << " ";
+        }
+    }
+    os << "]";
+    return os;
 }
