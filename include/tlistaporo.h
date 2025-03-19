@@ -1,7 +1,14 @@
 #pragma once
 #include "tporo.h"
 
+class TListaPosicion;
+class TListaPoro;
+
 class TListaNodo{
+
+    friend class TListaPosicion;
+    friend class TListaPoro;
+
     private:
         TPoro e;
         TListaNodo *anterior;
@@ -13,7 +20,11 @@ class TListaNodo{
         ~TListaNodo();
         TListaNodo &operator=(const TListaNodo &);
 };
+
 class TListaPosicion {
+
+    friend class TListaPoro;
+
     private:
         TListaNodo *pos;
         
@@ -30,6 +41,9 @@ class TListaPosicion {
     };
     
 class TListaPoro {
+
+    friend class TListaPosicion;
+
     private:
         TListaNodo *primero;
         TListaNodo *ultimo;
@@ -41,6 +55,11 @@ class TListaPoro {
         TListaPoro &operator=(const TListaPoro &);
 
         bool operator==(const TListaPoro &) const;
+
+        //Se requiere operafor + y -
+        TListaPoro operator+(const TListaPoro &) const;
+        TListaPoro operator-(const TListaPoro &) const;
+
         bool EsVacia() const;
         bool Insertar(const TPoro &);
         bool Borrar(const TPoro &);
