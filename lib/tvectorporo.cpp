@@ -105,10 +105,10 @@ bool TVectorPoro::Redimensionar(int dim){
     return true;
 }
 
-ostream &operator<<(ostream &, const TVectorPoro &tvector)
+ostream &operator<<(ostream &os, const TVectorPoro &tvector)
 {
     os << "[";
-    for (int i = 0; i < tvector; i++)
+    for (int i = 0; i < tvector.dimension; i++)
     {
         os << i+1 << " " << tvector.datos[i];
         if (i < tvector.dimension - 1)

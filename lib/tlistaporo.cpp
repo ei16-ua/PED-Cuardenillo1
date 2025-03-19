@@ -2,15 +2,15 @@
 
 TListaNodo::TListaNodo()
 {
-    anterior = NULL;
-    siguiente = NULL;
+    anterior = nullptr;
+    siguiente = nullptr;
 }
 
 TListaNodo::TListaNodo(const TListaNodo &listanodo)
 {
     e = listanodo.e;
-    anterior = listanodo.anterior;
-    siguiente = listanodo.siguiente;
+    anterior = nullptr;
+    siguiente = nullptr;
 }
 
 TListaNodo::~TListaNodo()
@@ -117,10 +117,12 @@ TListaPoro::~TListaPoro()
 TListaPoro &TListaPoro::operator=(const TListaPoro &tlistaporo)
 {
     if(this != &tlistaporo){
-        this->~TListaPoro();
-        primero = nullptr;
-        ultimo = nullptr;
-
+        while (!EsVacia())
+        {
+            TListaPosicion pos = Primera();
+            Borrar(pos);
+        }
+        
         TListaNodo *nodo = tlistaporo.primero;
         while (nodo != nullptr)
         {
@@ -208,7 +210,8 @@ bool TListaPoro::Insertar(const TPoro &poro)
     {
         if(nodo->e.Volumen() <= nodo_actual->e.Volumen()){
             if(nodo->e.Volumen() <= nodo_actual ->e.Volumen()){
-                while (nodo_actual != nullptr && nodo_actual->siguiente->e.Volumen() == nodo->e.Volumen())
+                while (nodo_actual->siguiente != nullptr && 
+                    nodo_actual->siguiente->e.Volumen() == nodo->e.Volumen())
                 {
                     nodo_actual = nodo_actual->siguiente;
                 }
@@ -259,7 +262,7 @@ bool TListaPoro::Borrar(const TPoro &poro)
                 if(primero != nullptr){
                     primero->anterior = nullptr;
                 }else{
-                    ultimo = nullptr
+                    ultimo = nullptr;
                 }
             } else if(nodo == ultimo){
                 ultimo = nodo->anterior;
@@ -443,14 +446,16 @@ TListaPoro TListaPoro::ExtraerRango(int num1, int num2)
 ostream &operator<<(ostream &os, const TListaPoro &tlistaposicion)
 {
     os << "(";
-    TListaNodo *nodo = tlistaposicion.primero;
-    while (nodo != nullptr)
-    {
-        os << nodo->e;
-        if(nodo->siguiente != nullptr){
-            os << " ";
+    if(tlistaposicion.primero != nullptr){
+        TListaNodo *nodo = tlistaposicion.primero;
+        while (nodo != nullptr)
+        {
+            os << nodo->e;
+            if(nodo->siguiente != nullptr){
+                os << " ";
+            }
+            nodo = nodo->siguiente;
         }
-        nodo = nodo->siguiente;
     }
     os << ")";
     return os;

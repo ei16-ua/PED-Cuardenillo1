@@ -8,6 +8,8 @@ class TListaNodo{
 
     friend class TListaPosicion;
     friend class TListaPoro;
+    //paar que TListaPoro pueda acceder a los atributos de TListaNodo
+    friend ostream &operator<<(ostream &, const TListaPoro &);
 
     private:
         TPoro e;

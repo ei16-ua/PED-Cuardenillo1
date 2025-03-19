@@ -13,11 +13,11 @@ main(void)
 
   a.Insertar(p); a.Insertar(q); a.Insertar(r);
 
-  pos = a.Ultima();
+  pos = a.Primera();
 
   while(!pos.EsVacia())
   {
     cout << a.Obtener(pos) << endl;
-    pos = pos.Anterior();
+    pos = pos.Siguiente();
   }
 }

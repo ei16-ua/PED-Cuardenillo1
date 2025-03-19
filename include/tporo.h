@@ -2,6 +2,7 @@
 #define _TPoro_H_
 #include <iostream>
 #include <cctype>
+#include <cstring>
 using namespace std;
 
 class TPoro{
@@ -12,12 +13,12 @@ class TPoro{
         char* color;
     
         void Copiar(const TPoro &);
-        void COnvertirMinusculas(char *);
+        void ConvertirMinusculas(char *);
 
     public:
         TPoro();
         TPoro(int , int, double);
-        TPoro(int, int, double, char *);
+        TPoro(int, int, double, const char *);
         TPoro(const TPoro &);
         ~TPoro();
         TPoro & operator=(const TPoro & );
@@ -35,7 +36,7 @@ class TPoro{
 
 
 
-        friend ostream & operator<< (ostream &, TPoro &);
+        friend ostream & operator<< (ostream &, const TPoro &);
 };
 
 #endif
