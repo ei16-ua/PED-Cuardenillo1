@@ -1,0 +1,42 @@
+Evaluando PRUEBA/tad01.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad02.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+3a4,6
+> 1
+> 2
+> 3
+ERROR
+Evaluando PRUEBA/tad03.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad04.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad05.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+0a1
+> ((1, 1) 1.00 - (2, 2) 2.00 - (3, 3) 3.00 -)
+ERROR
+Evaluando PRUEBA/tad06.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad07.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad08.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad09.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad10.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad11.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK
+Evaluando PRUEBA/tad12.cpp
+g++ -g  -Iinclude src/tad.cpp lib/tporo.o lib/tvectorporo.o lib/tlistaporo.o -o tad
+OK

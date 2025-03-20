@@ -2,22 +2,20 @@
 
 using namespace std;
 
-#include "tlistaporo.h"
+#include "tporo.h"
+#include "tvectorporo.h"
 
 int
 main(void)
 {
-  TPoro p(1, 1, 1, "rojo"), q(2, 2, 2, "verde"), r(3, 3, 3, "amarillo");
-  TListaPoro a;
-  TListaPosicion pos;
+  TPoro a(1, 2, 3, "rojo");
+  TVectorPoro v(5), w;
 
-  a.Insertar(p); a.Insertar(q); a.Insertar(r);
+  cout << "Longitud: " << v.Longitud() << endl;
+  cout << "Longitud: " << w.Longitud() << endl;
 
-  pos = a.Ultima();
+  w = v;
 
-  while(!pos.EsVacia())
-  {
-    cout << a.Obtener(pos) << endl;
-    pos = pos.Anterior();
-  }
+  cout << "Longitud: " << v.Longitud() << endl;
+  cout << "Longitud: " << w.Longitud() << endl;
 }

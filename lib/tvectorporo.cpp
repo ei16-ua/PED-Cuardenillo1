@@ -64,7 +64,7 @@ bool TVectorPoro::operator!=(const TVectorPoro &tvectorporo) const{
 }
 
 TPoro &TVectorPoro::operator[](int i){
-    if(i >= 1 && i >= dimension){
+    if(i >= 1 && i <= dimension && datos != nullptr){
         return datos[i-1];
     }
     return error;
