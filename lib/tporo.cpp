@@ -50,9 +50,7 @@ TPoro::TPoro(int px, int py, double v, const char* c)
     }
     else{
         color = nullptr;
-    }
-    
-    this->color = color;
+    }    
 }
 
 TPoro::TPoro(const TPoro &tporo ) 
@@ -76,7 +74,12 @@ TPoro &TPoro::operator=(const TPoro &tporo)
 
 bool TPoro::operator==(const TPoro &tporo ) const
 {
-    return this->x == tporo.x && this->y == tporo.y && this->volumen == tporo.volumen && this->color == tporo.color;
+    return this->x == tporo.x &&
+        this->y == tporo.y &&
+        this->volumen == tporo.volumen && 
+        ((this->color == nullptr && tporo.color == nullptr) || 
+        (this->color != nullptr && tporo.color != nullptr && 
+            strcmp(this->color, tporo.color) == 0));
 }
 
 bool TPoro::operator!=(const TPoro &tporo) const
@@ -95,17 +98,17 @@ void TPoro::Volumen(double)
     this->volumen = volumen;
 }
 
-void TPoro::Color(const char *)
+void TPoro::Color(const char * c)
 {
     delete[] color;
-    if (color != NULL)
+    if (c != nullptr)
     {
-        color = new char[strlen(color) + 1];
-        strcpy(this->color, color);
+        color = new char[strlen(c) + 1];
+        strcpy(color, c);
         ConvertirMinusculas(this->color);
     }
     else{
-        color = NULL;
+        color = nullptr;
     }
 }
 
@@ -134,13 +137,24 @@ bool TPoro::EsVacio() const
     return x == 0 && y == 0 && volumen == 0 && color == nullptr;
 }
 
-ostream & operator<<(ostream &os, const TPoro &obj)
+ostream &operator<<(ostream &os, const TPoro &obj)
 {
     if (obj.EsVacio()) {
         os << "()";
     } else {
-        os << "(" << obj.PosicionX() << ", " << obj.PosicionY() << ") " << obj.Volumen();
-        if (obj.Color() == NULL) {
+        os.setf(ios::fixed);
+        os.precision(2);
+        os << "(" << obj.x << ", " << obj.y << ") ";
+
+        /*para imprimir los números sin decimales
+        if (obj.Volumen() == (int)obj.Volumen()) {
+            os << (int)obj.Volumen();
+        } else {
+            os << obj.Volumen();
+        }*/
+        os << obj.Volumen();
+
+        if (obj.Color() == nullptr || obj.Color()[0] == '\0') {
             os << " -";
         } else {
             os << " " << obj.Color();
@@ -148,4 +162,5 @@ ostream & operator<<(ostream &os, const TPoro &obj)
     }
     return os;
 }
+
 

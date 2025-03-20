@@ -120,7 +120,9 @@ TListaPoro &TListaPoro::operator=(const TListaPoro &tlistaporo)
         while (!EsVacia())
         {
             TListaPosicion pos = Primera();
-            Borrar(pos);
+            if(!pos.EsVacia()){
+                Borrar(pos);
+            }
         }
         
         TListaNodo *nodo = tlistaporo.primero;
@@ -450,9 +452,11 @@ ostream &operator<<(ostream &os, const TListaPoro &tlistaposicion)
         TListaNodo *nodo = tlistaposicion.primero;
         while (nodo != nullptr)
         {
-            os << nodo->e;
-            if(nodo->siguiente != nullptr){
-                os << " ";
+            if(nodo != nullptr){
+                os << nodo->e;
+                if(nodo->siguiente != nullptr){
+                    os << " ";
+                }
             }
             nodo = nodo->siguiente;
         }
